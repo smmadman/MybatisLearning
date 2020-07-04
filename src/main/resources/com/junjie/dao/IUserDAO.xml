@@ -36,11 +36,18 @@
     <select id="findByName" parameterType="String" resultType="com.junjie.domain.User">
         select * from user where username like #{uname};
         <!--select * from user where username like '%${value}%';-->
-</select>
+    </select>
 
-<!--查询总用户数-->
+    <!--查询总用户数-->
     <select id="findTotal" resultType="Integer">
         select count(*) from user;
     </select>
+
+    <!--根据QueryVo的条件查询用户-->
+    <select id="findByVo" parameterType="com.junjie.domain.QueryVo" resultType="com.junjie.domain.User">
+        select * from user where username like #{user.username};
+        <!--select * from user where username like '%${value}%';-->
+    </select>
+
 
 </mapper>

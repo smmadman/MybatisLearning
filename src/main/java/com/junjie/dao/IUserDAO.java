@@ -1,5 +1,6 @@
 package com.junjie.dao;
 
+import com.junjie.domain.QueryVo;
 import com.junjie.domain.User;
 
 import java.util.List;
@@ -52,4 +53,11 @@ public interface IUserDAO {
      * @return
      */
     int findTotal();
+
+    /**
+     * 根据QueryVo作为条件查询用户
+     * @param vo
+     * @return
+     */
+    List<User> findByVo(QueryVo vo);
 }

@@ -1,6 +1,7 @@
 package com.junjie.test;
 
 import com.junjie.dao.IUserDAO;
+import com.junjie.domain.QueryVo;
 import com.junjie.domain.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -165,5 +166,21 @@ public class MybatisTest {
     public void testFindTotal(){
         //5.执行查询操作
         System.out.println(userDAO.findTotal());
+    }
+
+    /**
+     * 测试使用QueryVo作为查询条件
+     */
+    @Test
+    public void testFindByVo(){
+        QueryVo vo = new QueryVo();
+        User user = new User();
+        user.setUsername("%王%");
+        vo.setUser(user);
+        //5.执行查询操作
+        List<User> users = userDAO.findByVo(vo);
+        for (User u : users) {
+            System.out.println(u);
+        }
     }
 }
