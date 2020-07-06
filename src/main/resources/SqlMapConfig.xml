@@ -30,6 +30,6 @@
 
     <!-- 指定映射配置文件的位置，映射配置文件指的是每个DAO独立的配置文件 -->
     <mappers>
-        <mapper resource="com/junjie/dao/IUserDAO.xml"></mapper>
+        <package name="com.junjie.dao"></package>
     </mappers>
 </configuration>
