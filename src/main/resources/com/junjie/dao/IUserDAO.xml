@@ -3,6 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.junjie.dao.IUserDAO">
+
+    <!--了解的内容，抽取重复的sql语句-->
+    <sql id="defaultUser">
+        select * from user
+    </sql>
+
     <!--配置查询所有-->
     <select id="findAll" resultType="com.junjie.domain.User">
         select * from user;
@@ -50,4 +56,29 @@
     </select>
 
 
-</mapper>
+    <!-- 根据条件查询-->
+        <select id="findUserByCondition" resultType="com.junjie.domain.User" parameterType="com.junjie.domain.User">
+            select * from user
+            <where>
+                <if test="username != null">
+                    and username = #{username}
+                </if>
+                <if test="sex != null">
+                    and sex = #{sex}
+                </if>
+            </where>
+        </select>
+
+
+    <!-- 根据queryvo中的Id集合实现查询用户列表 -->
+    <select id="findUserInIds" resultType="com.junjie.domain.User" parameterType="com.junjie.domain.QueryVo">
+        <include refid="defaultUser"></include>
+        <where>
+            <if test="ids != null and ids.size()>0">
+                <foreach collection="ids" open="and id in (" close=")" item="uid" separator=",">
+                    #{uid}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    </mapper>
