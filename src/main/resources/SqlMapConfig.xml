@@ -4,6 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!-- mybatis的主配置文件 -->
 <configuration>
+
+    <!--使用typeAliases配置别名，它只能配置domain中类的别名 -->
+    <typeAliases>
+        <package name="com.junjie.domain"></package>
+    </typeAliases>
+
+
     <!-- 配置环境 -->
     <environments default="mysql">
         <!-- 配置mysql环境 -->

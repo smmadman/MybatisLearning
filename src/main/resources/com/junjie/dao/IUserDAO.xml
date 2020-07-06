@@ -34,7 +34,7 @@
     </delete>
 
     <!--根据用户Id查询用户-->
-    <select id="findById" parameterType="INT" resultType="com.junjie.domain.User">
+    <select id="findById" parameterType="INT" resultType="User">
         select * from user where id=#{uid};
     </select>
 
